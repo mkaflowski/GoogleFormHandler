@@ -20,7 +20,7 @@ To use the library, first include it your project using Gradle
 
 ## How to use
 
-Calling vargs methods:
+Calling varargs methods:
 
 ```java
         FormHandler formHandler = FormHandler.getInstance();
