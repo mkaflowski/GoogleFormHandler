@@ -1,4 +1,4 @@
-package mkaflowski.googleformhandler;
+package googleformhandler;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

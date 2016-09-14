@@ -1,4 +1,4 @@
-package mkaflowski.googleformhandler;
+package googleformhandler;
 
 import org.junit.Test;
 
