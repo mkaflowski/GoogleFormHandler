@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 import googleformhandler.lib.FormHandler;
 
 public class SampleActivity extends Activity {
@@ -14,9 +16,9 @@ public class SampleActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         FormHandler formHandler = FormHandler.getInstance();
-        formHandler.setActionUrl("https://docs.google.com/forms/d/e/1FAIpQLSecT94MoRm4E7l0sZ8WVm4yB--POnNHnLzQuz48HWgI8KBzFg/formResponse");
-        formHandler.setEntries("entry.1573072988");
-        formHandler.setValues("tet");
+        formHandler.setActionUrl("https://docs.google.com/forms/d/e/1FAIpQLScbGjIM2TeZR1cw1ntkUboMU3NqE1Di6XaCcWwmnPfGeJTUcQ/formResponse");
+        formHandler.setEntries("entry.184960424","entry.193071214");
+        formHandler.setValues(Locale.getDefault().getLanguage(), String.valueOf("test"));
         formHandler.setListener(new FormHandler.FormHandlerListener() {
             @Override
             public void onPostComplete() {

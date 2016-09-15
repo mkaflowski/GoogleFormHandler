@@ -61,7 +61,7 @@ public class FormHandler {
 
                 try {
                     for (int i = 0; i < entries.size(); i++) {
-                        postBody = entries.get(i) + "=" + URLEncoder.encode(values.get(i), "UTF-8")+"&";
+                        postBody += entries.get(i) + "=" + URLEncoder.encode(values.get(i), "UTF-8")+"&";
                     }
 
                 } catch (UnsupportedEncodingException ex) {
