@@ -105,10 +105,12 @@ public class FormHandler {
     }
 
     public void setEntries(String... entries){
+        this.entries.clear();
         Collections.addAll(this.entries, entries);
     }
 
     public void setValues(String... values){
+        this.values.clear();
         Collections.addAll(this.values, values);
     }
 
