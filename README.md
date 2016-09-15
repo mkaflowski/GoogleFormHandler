@@ -17,6 +17,18 @@ To use the library, first include it your project using Gradle
 	dependencies {
 	        compile 'com.github.mkaflowski:GoogleFormHandler:v1.0.5'
 	}
+	
+##ProGuard
+
+If you are using ProGuard you might need to add the following option:
+```
+-keepattributes Signature
+-keepattributes Annotation
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+-dontwarn okhttp3.**
+-dontwarn okio.**
+```
 
 ## How to use
 
