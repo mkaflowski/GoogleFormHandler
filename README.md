@@ -15,7 +15,7 @@ To use the library, first include it your project using Gradle
     }
 
 	dependencies {
-	        compile 'com.github.mkaflowski:GoogleFormHandler:v1.0.3'
+	        compile 'com.github.mkaflowski:GoogleFormHandler:v1.0.4'
 	}
 
 ## How to use
