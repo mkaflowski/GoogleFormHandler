@@ -23,7 +23,7 @@ public class FormHandler {
     private Boolean result;
     private FormHandlerListener listener;
 
-    private String URL;
+    private String actionUrl;
     private List<String> entries;
     private List<String> values;
 
@@ -38,20 +38,20 @@ public class FormHandler {
     }
 
     public boolean post(){
-        post(URL,entries,values);
+        post(actionUrl,entries,values);
         return true;
     }
 
-    public boolean post(String URL, String entry, String value) {
+    public boolean post(String actionUrl, String entry, String value) {
         List<String> entries = new ArrayList<>();
         entries.add(entry);
         List<String> values = new ArrayList<>();
         values.add(value);
-        return post(URL, entries, values);
+        return post(actionUrl, entries, values);
     }
 
 
-    public boolean post(final String URL, final List<String> entries, final List<String> values) {
+    public boolean post(final String actionUrl, final List<String> entries, final List<String> values) {
         result = true;
 
         Thread thread = new Thread(new Runnable() {
@@ -61,7 +61,7 @@ public class FormHandler {
 
                 try {
                     for (int i = 0; i < entries.size(); i++) {
-                        postBody = entries.get(i) + "=" + URLEncoder.encode(values.get(i), "UTF-8");
+                        postBody = entries.get(i) + "=" + URLEncoder.encode(values.get(i), "UTF-8")+"&";
                     }
 
                 } catch (UnsupportedEncodingException ex) {
@@ -71,10 +71,12 @@ public class FormHandler {
                 try {
                     RequestBody body = RequestBody.create(FORM_DATA_TYPE, postBody);
                     Request request = new Request.Builder()
-                            .url(URL)
+                            .url(actionUrl)
                             .post(body)
                             .build();
                     Response response = client.newCall(request).execute();
+                    if(response.toString().contains("code=40"))
+                        result = false;
 
                 } catch (IOException exception) {
                     result = false;
@@ -110,8 +112,8 @@ public class FormHandler {
         Collections.addAll(this.values, values);
     }
 
-    public void setURL(String URL) {
-        this.URL = URL;
+    public void setActionUrl(String actionUrl) {
+        this.actionUrl = actionUrl;
     }
 
     public void setListener(FormHandlerListener listener) {

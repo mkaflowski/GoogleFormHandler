@@ -2,6 +2,7 @@ package googleformhandler;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import googleformhandler.lib.FormHandler;
 
@@ -13,24 +14,32 @@ public class SampleActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         FormHandler formHandler = FormHandler.getInstance();
-        formHandler.setURL("https://docs.google.com/forms/d/e/1FAIpQLSckxYU7gI1B8nZzWQvGe7Vk6Lb6Uko1fF8l_ryKL52TVJUzLw/formResponse");
-        formHandler.setEntries("entry.714513599");
-        formHandler.setValues("One");
+        formHandler.setActionUrl("https://docs.google.com/forms/d/e/1FAIpQLSecT94MoRm4E7l0sZ8WVm4yB--POnNHnLzQuz48HWgI8KBzFg/formResponse");
+        formHandler.setEntries("entry.1573072988");
+        formHandler.setValues("tet");
+        formHandler.setListener(new FormHandler.FormHandlerListener() {
+            @Override
+            public void onPostComplete() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(SampleActivity.this, "OK", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                });
+            }
+
+            @Override
+            public void onPostError() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(SampleActivity.this, "Error", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                });
+            }
+        });
         formHandler.post();
-
-
-//        FormHandler formHandler = FormHandler.getInstance();
-//        formHandler.setListener(new FormHandler.FormHandlerListener() {
-//            @Override
-//            public void onPostComplete() {
-//                Log.i("TAG","complete");
-//            }
-//
-//            @Override
-//            public void onPostError() {
-//                Log.i("TAG","complete");
-//            }
-//        });
-//        formHandler.post("https://docs.google.com/forms/d/e/1FAIpQLSckxYU7gI1B8nZzWQvGe7Vk6Lb6Uko1fF8l_ryKL52TVJUzLw/formResponse", "entry.714513599", getPackageName());
     }
 }
